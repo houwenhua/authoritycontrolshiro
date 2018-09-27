@@ -77,6 +77,7 @@ public class CustomRealm extends AuthorizingRealm{
      * @return
      */
     private Set<String> getRoleByUserCode(String usercode) {
+        System.out.println("从数据库中读取角色Roles");
         Set<Role> set = roleMapper.getRoleByUserCode(usercode);
         Set<String> roles = new HashSet<>();
         if(set != null) {

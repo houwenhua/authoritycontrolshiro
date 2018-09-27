@@ -30,6 +30,7 @@
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="realm" />
         <property name="sessionManager" ref="sessionManager"/>
+        <property name="cacheManager" ref="cacheManager" />
     </bean>
 
     <!--注册自定义的realm-->
@@ -48,4 +49,7 @@
         <property name="sessionDAO" ref="redisSessionDao" />
     </bean>
     <bean id="redisSessionDao" class="com.hwh.session.RedisSessionDao" />
+
+    <!--注册cacheManager-->
+    <bean id="cacheManager" class="com.hwh.cache.RedisCacheManager" />
 </beans>
