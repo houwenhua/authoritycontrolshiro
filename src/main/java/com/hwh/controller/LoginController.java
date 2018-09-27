@@ -3,6 +3,7 @@ package com.hwh.controller;
 import com.hwh.vo.ActiveUser;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
@@ -39,7 +40,20 @@ public class LoginController {
         } catch (Exception e) {
             return e.getMessage();
         }
-
         return "登录成功";
+    }
+
+    @RequiresRoles("用户管理员")
+    @RequestMapping(value = "/testRole")
+    @ResponseBody
+    public String testRole() {
+        return "testRole success";
+    }
+
+    @RequiresRoles("用户管理员1")
+    @RequestMapping(value = "/testRole1")
+    @ResponseBody
+    public String testRole1() {
+        return "testRole1 success";
     }
 }

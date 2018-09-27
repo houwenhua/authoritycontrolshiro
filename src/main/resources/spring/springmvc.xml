@@ -28,4 +28,11 @@
     </mvc:annotation-driven>
 
     <mvc:default-servlet-handler/>
+
+    <!--配置注解权限-->
+    <aop:config proxy-target-class="true" />
+    <bean class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor" >
+        <property name="securityManager" ref="securityManager" />
+    </bean>
 </beans>

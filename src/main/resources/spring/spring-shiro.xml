@@ -44,7 +44,7 @@
     </bean>
 
     <!--注册sessionManager-->
-    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+    <bean id="sessionManager" class="com.hwh.session.CustomSessionManager">
         <property name="sessionDAO" ref="redisSessionDao" />
     </bean>
     <bean id="redisSessionDao" class="com.hwh.session.RedisSessionDao" />
