@@ -44,6 +44,8 @@ public class RedisSessionDao extends AbstractSessionDAO {
     @Override
     protected Serializable doCreate(Session session) {
         Serializable sessionId = generateSessionId(session);
+        //分派session，解决报sessionID为null问题
+        assignSessionId(session,sessionId);
         saveSession(session);
         return sessionId;
     }
