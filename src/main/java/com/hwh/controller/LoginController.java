@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 
 /**
@@ -22,28 +23,21 @@ public class LoginController {
 
     @RequestMapping(value = "/subLogin",method = RequestMethod.POST,produces = "application/json;charset=utf-8")
     @ResponseBody
-    public String subLogin(ActiveUser user) {
+    public ModelAndView subLogin(ActiveUser user) {
+        ModelAndView mav = new ModelAndView("redirect:/403.jsp");
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(user.getUsercode(),user.getPassword());
         try{
             subject.login(token);
         } catch (AuthenticationException e) {
-            return e.getMessage();
+            mav.addObject("message","登录失败，账号或者密码不正确！！！");
+            return mav;
         }
-        try{
-            subject.checkRole("用户管理员");
-        } catch (Exception e) {
-            return e.getMessage();
-        }
-        try{
-            subject.checkPermission("user:create");
-        } catch (Exception e) {
-            return e.getMessage();
-        }
-        return "登录成功";
+        mav.setViewName("redirect:/index.jsp");
+        return mav;
     }
 
-    @RequiresRoles("用户管理员")
+   /* @RequiresRoles("用户管理员")*/
     @RequestMapping(value = "/testRole")
     @ResponseBody
     public String testRole() {

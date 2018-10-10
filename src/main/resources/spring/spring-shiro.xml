@@ -19,9 +19,15 @@
         <property name="unauthorizedUrl" value="403.jsp" />
         <property name="filterChainDefinitions">
             <value>
+                <!--配置静态文件不被拦截-->
+                /assets/** = anon
+                /css/** = anon
+                /image/** = anon
+                /js/** = anon
+                <!--配置静态文件不被拦截-->
                 /login.jsp = anon
-                /subLogin = anon
-                /* = authc
+                /loginController/subLogin = anon
+                /** = authc
             </value>
         </property>
     </bean>

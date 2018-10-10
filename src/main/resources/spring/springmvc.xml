@@ -27,7 +27,6 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-    <mvc:default-servlet-handler/>
 
     <!--配置注解权限-->
     <aop:config proxy-target-class="true" />

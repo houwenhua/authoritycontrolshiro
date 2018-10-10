@@ -17,6 +17,7 @@
         <constructor-arg ref="jedisPoolConfig"/>
         <constructor-arg value="127.0.0.1"/>
         <constructor-arg value="6379" />
+        <constructor-arg value="123456" />
     </bean>
 
     <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig"></bean>
